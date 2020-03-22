@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.bbs.test.dao.mapper.bbs">
+	
+	<select id="bbsList" resultType="com.bbs.test.dto.BBSDto">
+		SELECT * FROM BBS
+	</select>
+	
+	<insert id="writeCommit" parameterType="com.bbs.test.dto.BBSDto">
+		INSERT INTO BBS VALUES( bbsseq.nextval, #{title, jdbcType=VARCHAR}, #{writer, jdbcType=VARCHAR}, #{image, jdbcType=VARCHAR}, #{content, jdbcType=VARCHAR})
+	</insert>
+	
+	<select id="view" parameterType="int" resultType="com.bbs.test.dto.BBSDto">
+		SELECT * FROM BBS WHERE BNO=#{bno}
+	</select>
+	
+	<delete id="remove" parameterType="int">
+		DELETE FROM BBS WHERE BNO=#{bno}	
+	</delete>
+</mapper>
