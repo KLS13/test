@@ -51,5 +51,23 @@ public class BBSController {
 		
 		return "redirect:/board/list";
 	}
+	
+	@RequestMapping(value="/modify", method = RequestMethod.GET)
+	public void modify(@RequestParam("bno") int bno, Model model) throws Exception {
+		
+		model.addAttribute("view",service.view(bno));
+	}
+	
+	@RequestMapping(value="/modifyCommit" , method=RequestMethod.GET)
+	public String modifyCommit(@RequestParam("bno") int bno, 
+			BBSDto bdto, Model model) throws Exception {
+		
+		service.modifyCommit(bdto);
+		BBSDto view = service.view(bno);
+		
+		model.addAttribute("view", view);
+		
+		return "redirect:/board/view?bno="+bno;
+	}
 
 }

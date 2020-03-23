@@ -7,28 +7,32 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<form action="/board/modifyCommit" method="get">
+<input type="hidden" name="bno" value="${view.bno }">
 <table>
 	<tr>
 		<th>작성자</th>
-		<td>${view.writer }</td>
+		<td><input type="text" name="writer" id="writer"
+		value="${view.writer }"></td>
 	</tr>
 	<tr>
 		<th>제목</th>
-		<td>${view.title }</td>
+		<td><input type="text" name="title" id="title"
+		value="${view.title }"></td>
 	</tr>
+	<tr>
+		<th>이미지</th>
+		<td><input type="text" name="image" id="image" value="${view.image }">
 	<tr>	
 		<th>내용</th>
-		<td>${view.title }</td>
+		<td><textarea rows="5" cols="20" name="content">${view.title }</textarea></td>
 	</tr>
 	<tr>
 		<th colspan="2">
-		<input type="button"  value="삭제"
-		onclick="location.href='/board/remove?bno=${view.bno}'">
-		<input type="button"  value="수정"
-		onclick="location.href='/board/modify?bno=${view.bno}'">
+		<input type="submit"  value="수정완료">
 		</th>
 	</tr>
 </table>
+</form>
 </body>
 </html>

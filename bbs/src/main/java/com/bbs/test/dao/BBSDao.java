@@ -12,5 +12,6 @@ public interface BBSDao {
 	public void writeCommit(BBSDto bdto) throws Exception;
 	public BBSDto view(int bno) throws Exception;
 	public void remove(int bno) throws Exception;
+	public void modifyCommit(BBSDto bdto) throws Exception;
 
 }

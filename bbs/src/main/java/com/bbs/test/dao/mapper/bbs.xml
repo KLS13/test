@@ -20,4 +20,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="remove" parameterType="int">
 		DELETE FROM BBS WHERE BNO=#{bno}	
 	</delete>
+	
+	<update id="modifyCommit" parameterType="com.bbs.test.dto.BBSDto">
+		UPDATE BBS SET TITLE=#{title}, WRITER=#{writer}, IMAGE=#{image}, CONTENT=#{content} WHERE BNO=#{bno}
+	</update>
 </mapper>

@@ -46,5 +46,12 @@ public class ServiceImpl implements Servicebbs {
 		dao.remove(bno);
 		
 	}
+
+	@Override
+	public void modifyCommit(BBSDto bdto) throws Exception {
+		
+		dao.modifyCommit(bdto);
+		
+	}
 	
 }

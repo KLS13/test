@@ -46,4 +46,10 @@ public class BBSDaoImpl implements BBSDao {
 		sql.delete(namespace + ".remove", bno);
 		
 	}
+
+	@Override
+	public void modifyCommit(BBSDto bdto) throws Exception {
+		sql.update(namespace + ".modifyCommit", bdto);
+		
+	}
 }
