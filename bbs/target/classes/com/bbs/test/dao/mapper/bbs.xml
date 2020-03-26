@@ -6,7 +6,30 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.bbs.test.dao.mapper.bbs">
 	
 	<select id="bbsList" resultType="com.bbs.test.dto.BBSDto">
-		SELECT * FROM BBS
+		SELECT  BNO, 
+		        TITLE, 
+		        WRITER, 
+		        IMAGE,
+		        CONTENT
+		 FROM ( 
+		        SELECT BNO, 
+		               TITLE, 
+		               WRITER, 
+		               IMAGE,
+		               CONTENT 
+		               ROW_NUMBER() OVER(ORDER BY BNO DESC) AS RNUM
+		         FROM BBS
+		                       ) MP
+		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
+		ORDER BY BNO DESC
+	</select>
+	
+		<select id="listCount" resultType="int">
+	<![CDATA[
+		SELECT COUNT(BNO)
+		  FROM BBS
+		 WHERE BNO > 0
+	]]>
 	</select>
 	
 	<insert id="writeCommit" parameterType="com.bbs.test.dto.BBSDto">

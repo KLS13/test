@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import com.bbs.test.common.Criteria;
 import com.bbs.test.dao.BBSDao;
 import com.bbs.test.dto.BBSDto;
 
@@ -18,13 +19,13 @@ public class ServiceImpl implements Servicebbs {
 	@Override
 	public int bbsListCount() throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		return dao.bbsListCount();
 	}
 
 	@Override
-	public List<BBSDto> bbsList() throws Exception {
+	public List<BBSDto> bbsList(Criteria cri) throws Exception {
 		// TODO Auto-generated method stub
-		return dao.bbsList();
+		return dao.bbsList(cri);
 	}
 
 	@Override

@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.bbs.test.common.Criteria;
 import com.bbs.test.dto.BBSDto;
 
 @Repository
@@ -18,15 +19,15 @@ public class BBSDaoImpl implements BBSDao {
 	private static String namespace = "com.bbs.test.dao.mapper.bbs";
 
 	@Override
-	public List<BBSDto> bbsList() throws Exception {
+	public List<BBSDto> bbsList(Criteria cri) throws Exception {
 		// TODO Auto-generated method stub
-		return sql.selectList(namespace + ".bbsList");
+		return sql.selectList(namespace + ".bbsList", cri);
 	}
 
 	@Override
 	public int bbsListCount() throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		return sql.selectOne(namespace + ".listCount"); 
 	}
 
 	@Override
