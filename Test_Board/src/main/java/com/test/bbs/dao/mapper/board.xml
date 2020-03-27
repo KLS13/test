@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.test.bbs.dao.mapper.board">
+	<insert id="write" parameterType="com.test.bbs.domain.BoardVO">
+		INSERT INTO MP_BOARD (
+		BNO, TITLE, CONTENT, WRITER )
+		VALUES (
+		MP_BOARD_SEQ.NEXTVAL, #{title}, #{content}, #{writer})
+	</insert>
+</mapper>
