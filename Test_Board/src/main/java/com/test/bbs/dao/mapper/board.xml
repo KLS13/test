@@ -19,4 +19,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT * FROM MP_BOARD WHERE BNO = #{bno}
 	</select>
 	
+	    <update id="update" parameterType="com.test.bbs.domain.BoardVO">
+		UPDATE MP_BOARD SET
+		TITLE = #{title},
+		CONTENT = #{content},
+		WRITER = #{writer}
+		WHERE BNO = #{bno} 
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		DELETE 
+		FROM MP_BOARD
+		WHERE BNO = #{bno}
+	</delete>
+	
 </mapper>

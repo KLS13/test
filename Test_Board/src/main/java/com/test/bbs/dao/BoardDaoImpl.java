@@ -34,6 +34,18 @@ public class BoardDaoImpl implements BoardDao {
 		// TODO Auto-generated method stub
 		return sql.selectOne(namespace + ".view", bno);
 	}
+
+	@Override
+	public void update(BoardVO vo) throws Exception {
+		sql.update(namespace + ".update", vo);
+		
+	}
+
+	@Override
+	public void delete(int bno) throws Exception {
+		sql.delete(namespace + ".delete", bno);
+		
+	}
 	
 	
 }

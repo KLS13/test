@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -29,7 +30,9 @@
 			<td style="text-align: center">${list.bno }</td>
 			<td>${list.title }</td>
 			<td style="text-align: center">${list.writer }</td>
-			<td style="text-align: center">${list.regdate }</td>
+			<td style="text-align: center">
+			<fmt:formatDate value="${list.regdate}" pattern="yyyy-MM-dd"/>
+			</td>
 		</tr>
 	</c:forEach>
 	</c:if>

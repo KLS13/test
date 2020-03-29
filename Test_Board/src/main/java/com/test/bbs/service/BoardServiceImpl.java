@@ -32,4 +32,16 @@ public class BoardServiceImpl implements BoardService {
 		// TODO Auto-generated method stub
 		return dao.view(bno);
 	}
+
+	@Override
+	public void update(BoardVO vo) throws Exception {
+		dao.update(vo);
+		
+	}
+
+	@Override
+	public void delete(int bno) throws Exception {
+		dao.delete(bno);
+		
+	}
 }
