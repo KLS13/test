@@ -10,5 +10,6 @@
 </h1>
 
 <a href="#" onclick="location.href='/board/writePage'"> write </a>
+<a href="#" onclick="location.href='/board/list'"> list </a>
 </body>
 </html>

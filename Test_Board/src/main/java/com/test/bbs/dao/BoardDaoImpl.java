@@ -1,5 +1,7 @@
 package com.test.bbs.dao;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -19,6 +21,18 @@ public class BoardDaoImpl implements BoardDao {
 	public void write(BoardVO vo) throws Exception {
 		sql.insert(namespace + ".write", vo);
 		
+	}
+
+	@Override
+	public List<BoardVO> list() throws Exception {
+		
+		return sql.selectList(namespace + ".list");
+	}
+
+	@Override
+	public BoardVO view(int bno) throws Exception {
+		// TODO Auto-generated method stub
+		return sql.selectOne(namespace + ".view", bno);
 	}
 	
 	

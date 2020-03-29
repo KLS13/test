@@ -38,6 +38,8 @@
 							<tr>
 								<td>						
 									<button type="submit">작성</button>
+									<button type="button"
+									onclick="location.href='/board/list'">목록</button>
 								</td>
 							</tr>			
 						</tbody>			

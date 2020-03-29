@@ -10,4 +10,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		VALUES (
 		MP_BOARD_SEQ.NEXTVAL, #{title}, #{content}, #{writer})
 	</insert>
+	
+	<select id="list" resultType="com.test.bbs.domain.BoardVO">
+		SELECT * FROM MP_BOARD ORDER BY BNO DESC
+	</select>
+	
+	<select id="view"  parameterType="int" resultType="com.test.bbs.domain.BoardVO">
+		SELECT * FROM MP_BOARD WHERE BNO = #{bno}
+	</select>
+	
 </mapper>

@@ -1,9 +1,13 @@
 package com.test.bbs.contorller;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.test.bbs.domain.BoardVO;
 import com.test.bbs.service.BoardService;
@@ -28,8 +32,17 @@ public class BoardController {
 	}
 	
 	@RequestMapping("list")
-	public void list() throws Exception {
+	public void list(Model model) throws Exception {
+		List<BoardVO> list = service.list();
+		model.addAttribute("list", list);
 		
+	}
+	
+	@RequestMapping("view")
+	public void view(@RequestParam("bno") int bno,Model model) throws Exception {
+		
+		BoardVO view = service.view(bno);
+		model.addAttribute("view", view);
 	}
 
 }
