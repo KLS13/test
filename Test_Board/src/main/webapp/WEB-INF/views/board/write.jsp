@@ -2,7 +2,27 @@
     pageEncoding="UTF-8"%>
 <html>
 	<head>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>	
 	 	<title>게시판</title>
+		<script type="text/javascript">
+		function ajax_write() {
+
+			$.ajax({
+				type : 'POST',
+				url : "/board/write",
+				data : $("#writeForm").serialize(),
+				success : function(data) {
+					if(data == "YES") {							
+						alert("게시글 저장 완료");						
+						location.href ='/board/list';
+					}	
+				},
+				error : function(request, status, error) {
+					
+				}
+			});
+		}
+		</script>
 	</head>
 	<body>
 	
@@ -18,7 +38,8 @@
 			<hr />
 			
 			<section id="container">
-				<form role="form" method="post" action="/board/write">
+				<form id="writeForm" method="post">
+				
 					<table>
 						<tbody>
 							<tr>
@@ -37,7 +58,7 @@
 								</td>
 							<tr>
 								<td>						
-									<button type="submit">작성</button>
+									<button type="button" onclick="ajax_write()">작성</button>
 									<button type="button"
 									onclick="location.href='/board/list'">목록</button>
 								</td>

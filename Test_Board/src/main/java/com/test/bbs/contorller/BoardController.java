@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.test.bbs.domain.BoardVO;
 import com.test.bbs.service.BoardService;
@@ -26,10 +27,16 @@ public class BoardController {
 	}
 	
 	@RequestMapping("write")
-	public String write(BoardVO vo) throws Exception {
-		service.write(vo);
+	@ResponseBody
+	public String write(BoardVO vo, Model model) throws Exception {
 		
-		return "redirect:/board/list";
+		try {
+			service.write(vo);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return "YES";
 	}
 	
 	@RequestMapping("list")
