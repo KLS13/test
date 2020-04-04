@@ -4,6 +4,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="com.test.bbs.dao.mapper.board">
+
+	<select id="countBoard" resultType="int">
+	SELECT COUNT(*) FROM MP_BOARD
+	</select>
+
 	<insert id="write" parameterType="com.test.bbs.domain.BoardVO">
 		INSERT INTO MP_BOARD (
 		BNO, TITLE, CONTENT, WRITER )
@@ -12,8 +17,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 	<select id="list" resultType="com.test.bbs.domain.BoardVO">
-		SELECT * FROM MP_BOARD ORDER BY BNO DESC
-	</select>
+	SELECT * 
+		FROM (
+			SELECT ROWNUM RN, A.* 
+				FROM (
+						SELECT * 
+						FROM MP_BOARD 
+						ORDER BY BNO DESC 
+						) A
+				)
+	WHERE RN BETWEEN #{start} AND #{end}
+</select>
 	
 	<select id="view"  parameterType="int" resultType="com.test.bbs.domain.BoardVO">
 		SELECT * FROM MP_BOARD WHERE BNO = #{bno}

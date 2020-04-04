@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.test.bbs.common.Paging;
 import com.test.bbs.domain.BoardVO;
 
 @Repository
@@ -24,9 +25,9 @@ public class BoardDaoImpl implements BoardDao {
 	}
 
 	@Override
-	public List<BoardVO> list() throws Exception {
+	public List<BoardVO> list(Paging vo) throws Exception {
 		
-		return sql.selectList(namespace + ".list");
+		return sql.selectList(namespace + ".list", vo);
 	}
 
 	@Override
@@ -45,6 +46,12 @@ public class BoardDaoImpl implements BoardDao {
 	public void delete(int bno) throws Exception {
 		sql.delete(namespace + ".delete", bno);
 		
+	}
+
+	@Override
+	public int countBoard() {
+		// TODO Auto-generated method stub
+		return sql.selectOne(namespace + ".countBoard");
 	}
 	
 	

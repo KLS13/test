@@ -32,6 +32,8 @@
 				location.href = "/board/list";
 			})
 		})
+		
+		
 	</script>
 </head>
 <body>

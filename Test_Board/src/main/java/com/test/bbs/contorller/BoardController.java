@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.test.bbs.common.Paging;
 import com.test.bbs.domain.BoardVO;
 import com.test.bbs.service.BoardService;
 
@@ -40,10 +41,17 @@ public class BoardController {
 	}
 	
 	@RequestMapping("list")
-	public void list(Model model) throws Exception {
-		List<BoardVO> list = service.list();
-		model.addAttribute("list", list);
+	public String boardList(Paging vo, Model model,String nowPage,String cntPerPage) throws Exception {
 		
+		int total = service.countBoard();
+			nowPage = "1";
+			cntPerPage = "5";
+
+		vo = new Paging(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		List<BoardVO> list = service.list(vo);
+		model.addAttribute("paging", vo);
+		model.addAttribute("list", list);
+		return "board/list";
 	}
 	
 	@RequestMapping("view")

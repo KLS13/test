@@ -21,7 +21,7 @@
 					
 				}
 			});
-		}
+		}z
 		</script>
 	</head>
 	<body>

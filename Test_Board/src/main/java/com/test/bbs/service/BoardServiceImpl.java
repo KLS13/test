@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import com.test.bbs.common.Paging;
 import com.test.bbs.dao.BoardDao;
 import com.test.bbs.domain.BoardVO;
 
@@ -22,9 +23,9 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public List<BoardVO> list() throws Exception {
+	public List<BoardVO> list(Paging vo) throws Exception {
 		// TODO Auto-generated method stub
-		return dao.list();
+		return dao.list(vo);
 	}
 
 	@Override
@@ -43,5 +44,11 @@ public class BoardServiceImpl implements BoardService {
 	public void delete(int bno) throws Exception {
 		dao.delete(bno);
 		
+	}
+
+	@Override
+	public int countBoard() {
+		// TODO Auto-generated method stub
+		return dao.countBoard();
 	}
 }
