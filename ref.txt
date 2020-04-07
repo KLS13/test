@@ -67,3 +67,24 @@
 	<beans:bean name="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
 		<beans:constructor-arg ref="sqlSessionFactory"/>
 	</beans:bean>	
+	
+	
+	
+
+boardTest   DB
+
+//게시판 테이블
+CREATE TABLE boardTest(
+	idx NUMBER(10,0),
+	writer VARCHAR2(20) NOT NULL,
+	title VARCHAR2(30) NOT NULL,
+	content LONG NOT NULL,
+	reg_date DATE NOT NULL,
+	cnt int default 0
+);
+
+//시퀀스 생성
+CREATE SEQUENCE tmp_seq ;
+
+//제약조건 추가
+alter table boardTest add constraint pk_board primary key (idx);
