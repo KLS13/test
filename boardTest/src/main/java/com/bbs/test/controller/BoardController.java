@@ -27,7 +27,7 @@ public class BoardController {
 	
 	//글 목록
 	@RequestMapping("/getBoardList.do")
-	public String getBoardList(PagingCriteria cri, Model model) {
+	public String getBoardList(PagingCriteria cri, Model model) throws Exception{
 		
 		List<BoardVO> boardList = boardService.getBoardList(cri);
 		
@@ -41,8 +41,9 @@ public class BoardController {
 	
 	// 글 상세 조회
 	@RequestMapping("/getContent.do")
-	public String getBoard(BoardVO vo, Model model, @ModelAttribute("cri") PagingCriteria cri) {
+	public String getBoard(BoardVO vo, Model model, @ModelAttribute("cri") PagingCriteria cri) throws Exception{
 		model.addAttribute("board", boardService.getContent(vo)); // Model 정보 저장
+		boardService.updateCnt(vo.getIdx());
 		return "content"; // View 이름 리턴
 	}
 	
@@ -57,6 +58,7 @@ public class BoardController {
 	// 글 쓰기 페이지 이동
 	@RequestMapping("/writeBoard.do") 
 	public String moveInsertBoard()throws Exception{
+		
 		return "insertBoard";
 	}
 	 

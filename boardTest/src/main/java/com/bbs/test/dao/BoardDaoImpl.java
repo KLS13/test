@@ -48,4 +48,11 @@ public class BoardDaoImpl implements BoardDao {
 		return sql.selectOne(namespace + ".getTotalCnt");
 	}
 
+	@Override
+	public void updateCnt(int idx) {
+		System.out.println("===> Mybatis로 조회수 증가");
+		sql.update(namespace + ".updateCnt", idx); 
+		
+	}
+
 }

@@ -23,4 +23,6 @@ public interface BoardService {
 		
 		//글 갯수
 		int totalCnt();
+		
+		void updateCnt(int idx);
 }

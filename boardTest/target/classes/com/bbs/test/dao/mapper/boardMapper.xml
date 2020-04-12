@@ -52,4 +52,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT count(*)
 		FROM boardTest
 	</select>
+	
+	<update id="updateCnt">
+		UPDATE boardTest SET cnt= cnt+1 where idx = #{idx}
+	</update>
 </mapper>

@@ -9,7 +9,10 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>글 목록</title>
-	<script src="resources/jQuery/jquery-3.4.1.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.4.1.js"   
+	integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="   
+	crossorigin="anonymous">
+</script>
 </head>
 <body>
 	<a href="/">메인</a>

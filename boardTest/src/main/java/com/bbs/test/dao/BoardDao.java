@@ -24,5 +24,7 @@ public interface BoardDao {
 
 	// 글 갯수
 	int totalCnt();
+	
+	void updateCnt(int idx);
 
 }

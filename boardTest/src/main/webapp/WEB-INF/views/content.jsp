@@ -8,7 +8,10 @@
 <head>
 	<meta charset="UTF-8">
 	<title>글 상세</title>
-	<script src="resources/jQuery/jquery-3.4.1.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.4.1.js"   
+	integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="   
+	crossorigin="anonymous">
+</script>
 </head>
 <body>
 	<h1>글 상세</h1>

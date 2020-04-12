@@ -45,5 +45,11 @@ public class BoardServiceImpl implements BoardService {
 	public int totalCnt() {
 		return dao.totalCnt();
 	}
+
+	@Override
+	public void updateCnt(int idx) {
+		dao.updateCnt(idx);
+		
+	}
 }
 
