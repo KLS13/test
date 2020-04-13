@@ -24,6 +24,6 @@ public class PagingCriteria {
 
 	@Override
 	public String toString() {
-		return "PagingCriteria [pageNum=" + pageNum + ", amount=" + amount + "]";
+		return "PagingCriteria[pageNum=" + pageNum + ", amount=" + amount + "]";
 	}
 }
