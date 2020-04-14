@@ -7,9 +7,9 @@ public class PageMaker {
 	private boolean prev;
 	private boolean next;
 	
-	private PagingCriteria cri;
+	private Criteria cri;
 	
-	public PageMaker(PagingCriteria cri,int total){
+	public PageMaker(Criteria cri,int total){
 		this.cri=cri;
 		int realEnd = (int)(Math.ceil((total * 1.0) / cri.getAmount()));
 		this.endPage = (int)(Math.ceil(cri.getPageNum() / 10.0) * 10);
@@ -24,11 +24,11 @@ public class PageMaker {
 		
 	}
 	
-	public PagingCriteria getCri() {
+	public Criteria getCri() {
 		return cri;
 	}
 
-	public void setCri(PagingCriteria cri) {
+	public void setCri(Criteria cri) {
 		this.cri = cri;
 	}
 

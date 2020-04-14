@@ -3,8 +3,7 @@ package com.bbs.test.controller;
 import java.io.IOException;
 import java.util.List;
 
-import javax.inject.Inject;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -14,25 +13,23 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.bbs.test.domain.BoardVO;
+import com.bbs.test.domain.Criteria;
 import com.bbs.test.domain.PageMaker;
-import com.bbs.test.domain.PagingCriteria;
 import com.bbs.test.service.BoardService;
 
 @Controller
 @SessionAttributes("board")
 public class BoardController {
 	
-	@Inject
+	@Autowired
 	private BoardService boardService;
 	
-	//글 목록
 	@RequestMapping("/getBoardList.do")
-	public String getBoardList(PagingCriteria cri, Model model) throws Exception{
+	public String getBoardList(Criteria cri, Model model) {
 		
 		List<BoardVO> boardList = boardService.getBoardList(cri);
 		
-		int total = boardService.totalCnt();
-		
+		int total = boardService.totalCnt(cri);
 		// Model 정보 저장
 		model.addAttribute("boardList",boardList);
 		model.addAttribute("paging",new PageMaker(cri,total));
@@ -41,7 +38,7 @@ public class BoardController {
 	
 	// 글 상세 조회
 	@RequestMapping("/getContent.do")
-	public String getBoard(BoardVO vo, Model model, @ModelAttribute("cri") PagingCriteria cri) throws Exception{
+	public String getBoard(BoardVO vo, Model model, @ModelAttribute("cri") Criteria cri) throws Exception{
 		model.addAttribute("board", boardService.getContent(vo)); // Model 정보 저장
 		boardService.updateCnt(vo.getIdx());
 		return "content"; // View 이름 리턴
@@ -65,7 +62,7 @@ public class BoardController {
 
 	// 글 수정
 	@RequestMapping("/updateBoard.do")
-	public String updateBoard(@ModelAttribute("board") BoardVO vo, @ModelAttribute("cri") PagingCriteria cri,RedirectAttributes rttr) {
+	public String updateBoard(@ModelAttribute("board") BoardVO vo, @ModelAttribute("cri") Criteria cri,RedirectAttributes rttr) {
 		
 		if(boardService.updateBoard(vo)) {
 			rttr.addFlashAttribute("result","success");

@@ -4,17 +4,45 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="com.bbs.test.dao.mapper.boardMapper">
+
+	<sql id="criteria">
+		<trim prefixOverrides="OR" suffix=") AND " prefix="(">
+			<foreach collection="typeArr" item="type">
+				<trim prefix="OR">
+					<choose>
+						<when test="type == 'T'.toString()">title like '%'||#{keyword}||'%' </when>
+						<when test="type == 'C'.toString()">content like '%'||#{keyword}||'%' </when>
+						<when test="type == 'W'.toString()">writer like '%'||#{keyword}||'%' </when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
 	
 	
 	<select id="getBoardList" resultType="com.bbs.test.domain.BoardVO">
 		<![CDATA[
 			SELECT idx,title,writer,reg_date,cnt
-			FROM	(SELECT /*+INDEX_DESC(boardTest pk_board) */
+			FROM	(
+					SELECT /*+INDEX_DESC(boardTest pk_board) */
 						rownum rn, idx, title, writer,reg_date,cnt 
-					from boardTest where rownum <= #{pageNum} * #{amount})
-			where rn > (#{pageNum}-1) * #{amount}
-			ORDER BY idx DESC
+					from boardTest
+					where
 		]]>
+		<include refid="criteria"></include>
+		<![CDATA[			
+					rownum <= #{pageNum} * #{amount}
+					)
+			where rn > (#{pageNum}-1) * #{amount}
+		]]>
+	</select>
+
+	<select id="getTotalCnt" resultType="int">
+		SELECT count(*)
+		FROM boardTest
+		where
+		<include refid="criteria"></include>
+		idx>0
 	</select>
 	
 	<select id="getContent" resultType="com.bbs.test.domain.BoardVO">
@@ -47,13 +75,4 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE idx = #{idx}
 		]]>
 	</delete>
-	
-	<select id="getTotalCnt" resultType="int">
-		SELECT count(*)
-		FROM boardTest
-	</select>
-	
-	<update id="updateCnt">
-		UPDATE boardTest SET cnt= cnt+1 where idx = #{idx}
-	</update>
 </mapper>

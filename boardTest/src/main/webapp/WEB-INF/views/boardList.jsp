@@ -62,6 +62,23 @@
 		<input type="hidden" id="pageNum" name="pageNum" value="${paging.cri.pageNum }">
 		<input type="hidden" id="amount" name="amount" value="${paging.cri.amount }">
 	</form>
+	
+	<!-- 검색 form -->
+	<div id="search">
+		<form id="searchForm" action="getBoardList.do" method="get">
+			<select name="type">
+				<option value="">선택</option>
+				<option value="T">제목</option>
+				<option value="C">내용</option>
+				<option value="W">작성자</option>
+				<option value="TC">제목 + 내용</option>
+				<option value="TW">제목 + 작성자</option>
+				<option value="TCW">제목 + 내용 + 작성자</option>
+			</select>
+			<input type="text" name="keyword" />
+			<button id="searchBtn">검색</button>
+		</form>
+	</div>
 </body>
 
 <script type="text/javascript">

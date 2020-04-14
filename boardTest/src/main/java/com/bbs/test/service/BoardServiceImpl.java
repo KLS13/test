@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.bbs.test.dao.BoardDao;
 import com.bbs.test.domain.BoardVO;
-import com.bbs.test.domain.PagingCriteria;
+import com.bbs.test.domain.Criteria;
 
 @Service
 public class BoardServiceImpl implements BoardService {
@@ -17,7 +17,7 @@ public class BoardServiceImpl implements BoardService {
 	private BoardDao dao;
 	
 	@Override
-	public List<BoardVO> getBoardList(PagingCriteria paging) {
+	public List<BoardVO> getBoardList(Criteria paging) {
 		return dao.getBoardList(paging);
 	}
 	
@@ -42,8 +42,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public int totalCnt() {
-		return dao.totalCnt();
+	public int totalCnt(Criteria cri) {
+		return dao.totalCnt(cri);
 	}
 
 	@Override

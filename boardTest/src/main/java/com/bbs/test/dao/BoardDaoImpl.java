@@ -8,7 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.bbs.test.domain.BoardVO;
-import com.bbs.test.domain.PagingCriteria;
+import com.bbs.test.domain.Criteria;
 
 @Repository
 public class BoardDaoImpl implements BoardDao {
@@ -38,14 +38,14 @@ public class BoardDaoImpl implements BoardDao {
 		return (BoardVO) sql.selectOne(namespace + ".getContent", vo);
 	}
 
-	public List<BoardVO> getBoardList(PagingCriteria paging) {
+	public List<BoardVO> getBoardList(Criteria paging) {
 		System.out.println("===> Mybatis로 getBoardList() 기능 처리");
 		return sql.selectList(namespace + ".getBoardList",paging);
 	}
 	
-	public int totalCnt() {
+	public int totalCnt(Criteria cri) {
 		System.out.println("===> Mybatis로 totalCnt");
-		return sql.selectOne(namespace + ".getTotalCnt");
+		return sql.selectOne(namespace + ".getTotalCnt", cri);
 	}
 
 	@Override
