@@ -78,7 +78,7 @@ CREATE TABLE boardTest(
 	idx NUMBER(10,0),
 	writer VARCHAR2(20) NOT NULL,
 	title VARCHAR2(30) NOT NULL,
-	content LONG NOT NULL,
+	content VARCHAR2(1000) NOT NULL,
 	reg_date DATE NOT NULL,
 	cnt int default 0
 );
@@ -88,3 +88,26 @@ CREATE SEQUENCE tmp_seq ;
 
 //제약조건 추가
 alter table boardTest add constraint pk_board primary key (idx);
+
+//Long 타입은 like가 안되서 에러나기때문에  varchar 타입으로 수정
+=================================================================== 
+<script type="text/javascript">
+	$(document).ready(function (e){
+		$('#write').click(function(){
+				var frmArr = ["title","writer","content"];
+
+				//입력 값 널 체크
+				for(var i=0;i<frmArr.length;i++){
+					//alert(arr[i]);
+					if($.trim($('#'+frmArr[i]).val()) == ''){
+						alert('빈 칸을 모두 입력해 주세요.');
+						$('#'+frmArr[i]).focus();
+						return false;
+					}
+				}
+
+				//전송
+				$('#frm').submit();
+		});
+	});
+</script>
