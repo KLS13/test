@@ -44,12 +44,9 @@ public class Criteria {
 	public String[] getTypeArr() {
 		return type == null? new String[] {}: type.split("");
 	}
-
-
 	@Override
 	public String toString() {
 		return "Criteria [pageNum=" + pageNum + ", amount=" + amount + ", type=" + type +
 				", keyword=" + keyword + "]";
 	}
-	
 }
