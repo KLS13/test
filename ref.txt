@@ -107,6 +107,22 @@ alter table boardTest add constraint pk_board primary key (idx);
 
 //Long 타입은 like가 안되서 에러나기때문에  varchar 타입으로 수정
 =================================================================== 
+testboard  DB 파일업로드 예제
+
+CREATE TABLE testboard(
+	idx int PRIMARY KEY,
+	writer VARCHAR(20) NOT NULL,
+	title VARCHAR(30) NOT NULL,
+	content VARCHAR2(1000) NOT NULL,
+	reg_date DATE NOT NULL,
+	cnt int default 0,
+	file_name varchar(40)
+) 
+
+CREATE SEQUENCE TESTBOARD_SEQ;
+
+
+====================================================================
 <script type="text/javascript">
 	$(document).ready(function (e){
 		$('#write').click(function(){
