@@ -19,6 +19,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</trim>
 	</sql>
 	
+	<update id="updateCnt" parameterType="int">
+		<![CDATA[
+			UPDATE boardTest SET
+			CNT = CNT + 1
+			WHERE idx = #{idx}
+		]]>
+	
+	</update>
+	
 	
 	<select id="getBoardList" resultType="com.bbs.test.domain.BoardVO">
 		<![CDATA[
