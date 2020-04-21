@@ -5,9 +5,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class BoardDTO {
 		private int idx;
-		private String title;
-		private String writer;
-		private String content;
+		private String title,writer,content;
 		private Date regDate;
 		private int cnt;
 		private String fileName;

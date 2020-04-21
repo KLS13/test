@@ -25,4 +25,8 @@ public interface BoardService {
 		int totalCnt(Criteria cri);
 		
 		void updateCnt(int idx);
+
+		int getDateRemove(String reg_date);
+		
+		
 }

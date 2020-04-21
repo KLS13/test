@@ -26,5 +26,7 @@ public interface BoardDao {
 	int totalCnt(Criteria cri);
 	
 	void updateCnt(int idx);
+	
+	int getDateRemove(String reg_date);
 
 }

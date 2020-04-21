@@ -51,5 +51,11 @@ public class BoardServiceImpl implements BoardService {
 		dao.updateCnt(idx);
 		
 	}
+
+	@Override
+	public int getDateRemove(String reg_date) {
+		return dao.getDateRemove(reg_date);
+		
+	}
 }
 

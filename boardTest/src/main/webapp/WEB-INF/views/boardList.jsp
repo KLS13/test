@@ -12,7 +12,7 @@
 	<script src="https://code.jquery.com/jquery-3.4.1.js"   
 	integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="   
 	crossorigin="anonymous">
-</script>
+	</script>
 </head>
 <body>
 	<a href="/">메인</a>
@@ -46,6 +46,12 @@
 	</table>
 	<br>
 	<a href="writeBoard.do">글 쓰기</a>
+	<form id="dateForm" name="dateForm">
+	
+	<input type="text" id="reg_date" name="reg_date">
+	</form>
+	<input type="button" onclick="reg_date()" value="날짜별 게시글 삭제">
+	
 	<div id="pagingDiv">
 			<c:if test="${paging.prev}">
 				<a href="${paging.startPage - 1 }">이전</a>
@@ -82,8 +88,9 @@
 </body>
 
 <script type="text/javascript">
-	$(document).ready(function(){
-		
+
+$(document).ready(function(){
+
 		//페이지 번호 이동
 		$('#pagingDiv a').click(function(e){
 			e.preventDefault();
@@ -101,6 +108,24 @@
 			$('#pagingFrm').submit();
 		});
 	});
+	
+function reg_date() {	
+	$.ajax({
+		type : 'POST',
+		url : "getDateRemove.do",
+		data : $("#dateForm").serialize(),
+		success : function(data) {
+			if (data == "YES") {					
+				alert("삭제되었습니다.");
+			}else{
+				alert("삭제할거없어");
+			}
+		},
+		error : function(request, status, error) {
+			
+		}
+	});	
+}
 </script>
 
 

@@ -19,6 +19,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</trim>
 	</sql>
 	
+	<delete id="dateRemove" parameterType="String">
+		<![CDATA[
+			DELETE FROM boardTest WHERE TO_CHAR(reg_date,'YYYY-MM-DD') = #{reg_date}
+		]]>
+	</delete>
+	
+	
 	<update id="updateCnt" parameterType="int">
 		<![CDATA[
 			UPDATE boardTest SET
@@ -27,7 +34,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		]]>
 	
 	</update>
-	
 	
 	<select id="getBoardList" resultType="com.bbs.test.domain.BoardVO">
 		<![CDATA[

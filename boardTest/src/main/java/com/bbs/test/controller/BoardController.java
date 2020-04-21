@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -59,7 +60,6 @@ public class BoardController {
 		return "insertBoard";
 	}
 	 
-
 	// 글 수정
 	@RequestMapping("/updateBoard.do")
 	public String updateBoard(@ModelAttribute("board") BoardVO vo, @ModelAttribute("cri") Criteria cri,RedirectAttributes rttr) {
@@ -81,4 +81,14 @@ public class BoardController {
 		return "redirect:getBoardList.do";
 	}
 	
+	@RequestMapping("/getDateRemove.do")
+	@ResponseBody
+	public void getDateRemove(@ModelAttribute("reg_date") String reg_date, Model model) throws Exception {
+		try {
+			boardService.getDateRemove(reg_date);
+			model.addAttribute("data", "YES");
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

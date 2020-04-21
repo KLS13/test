@@ -55,4 +55,10 @@ public class BoardDaoImpl implements BoardDao {
 		
 	}
 
+	@Override
+	public int getDateRemove(String reg_date) {
+		System.out.println("===> 날짜별 삭제");
+		return sql.delete(namespace + ".dateRemove", reg_date);
+	}
+
 }
