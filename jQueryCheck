@@ -1,0 +1,16 @@
+	$(document).ready(function (e){
+		$('#modify').click(function(){
+			var frmArr = ["title","content"];   // 체크할 name
+			//입력 값 널 체크
+			for(var i=0;i<frmArr.length;i++){
+				//alert(arr[i]);
+				if($.trim($('#'+frmArr[i]).val()) == ''){
+					alert('빈 칸을 모두 입력해 주세요. -'+frmArr[i]);
+					$('#'+frmArr[i]).focus();
+					return false;
+				}
+			}
+			//전송
+			$('#frm').submit();
+		});
+	});
