@@ -11,6 +11,5 @@
  
  <body>
     <input type="text" onkeypress="inNumber();"/>  
-    <input type="text" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"/>  
  </body>
 </html>
