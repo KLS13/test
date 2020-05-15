@@ -1,0 +1,16 @@
+<html>
+<head>
+    <script type="text/javascript">
+    function inNumber(){
+        if(event.keyCode<48 || event.keyCode>57){
+           event.returnValue=false;
+        }
+    }
+    </script>
+</head>
+ 
+ <body>
+    <input type="text" onkeypress="inNumber();"/>  
+    <input type="text" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"/>  
+ </body>
+</html>
