@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Prompt</h2>
+
+<button onclick="myFunction()">Try it</button>
+
+<p id="demo"></p>
+
+<script>
+function myFunction() {
+  var txt;
+  var person = prompt("성함(서명)을 해주세요.:", "서명");
+  if (person == null || person == "") {
+    txt = "User cancelled the prompt.";
+  } else {
+    txt = "Hello " + person + "! How are you today?";
+  }
+  document.getElementById("demo").innerHTML = txt;
+}
+</script>
+
+</body>
+</html>
