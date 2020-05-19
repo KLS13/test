@@ -1,0 +1,30 @@
+var doubleSubmitFlag = false;
+function fncSubmit(f){
+	var pReceiver = f.pReceiver.value;   
+	var pPhone = f.pPhone.value; 
+	var pAddress = f.pAddress.value; 
+	var pAddressDetail = f.pAddressDetail.value; 
+	
+	if(pReceiver == "") {
+		alert("수령인을 입력해주세요.");
+		return false;
+	}else if(pPhone == "") {
+		alert("전화번호를 입력해주세요.");
+		return false;
+	}else if(pAddress == "") {
+		alert("주소를 입력해주세요.");
+		return false;
+	}else if(pAddressDetail == "") {
+		alert("상세주소를 입력해주세요.");
+		return false;
+	}
+		
+    if(doubleSubmitFlag){
+        alert('결제처리 중 입니다.');
+        return false;
+    }else {        
+        doubleSubmitFlag = true;
+        f.action="payDecision";
+        f.submit();
+    }
+}
