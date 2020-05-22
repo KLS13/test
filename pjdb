@@ -1,3 +1,8 @@
+--create user bank identified by bank;
+--grant resource,connect to bank;
+--drop user bank cascade;
+--commit;
+
 CREATE   TABLE   member   (
    m_no    number(11)  PRIMARY KEY,
    m_id   varchar2(100)   NULL UNIQUE,
@@ -28,14 +33,14 @@ CREATE   TABLE   account_record   (
    ar_money    number(20)   NULL,
    send_account    number(11)   NOT   NULL,
    recveier_account    number(11)   NOT   NULL,
-    FOREIGN KEY (M_NO) REFERENCES MEMBER(M_NO) ON DELETE CASCADE,
-     FOREIGN KEY (M_NO) REFERENCES MEMBER(M_NO) ON DELETE CASCADE,
-      FOREIGN KEY (M_NO) REFERENCES MEMBER(M_NO) ON DELETE CASCADE,
-       FOREIGN KEY (M_NO) REFERENCES MEMBER(M_NO) ON DELETE CASCADE
+    FOREIGN KEY (send_no) REFERENCES MEMBER(M_NO) ON DELETE CASCADE,
+     FOREIGN KEY (recveier_no) REFERENCES MEMBER(M_NO) ON DELETE CASCADE,
+      FOREIGN KEY (send_account) REFERENCES MEMBER(M_NO) ON DELETE CASCADE,
+       FOREIGN KEY (recveier_account) REFERENCES MEMBER(M_NO) ON DELETE CASCADE
 );
 
 CREATE   TABLE   fund   (
-   f_no    number(11)   NOT   NULL,
+   f_no    number(11)   PRIMARY KEY,
    f_name   varchar2(100)  NOT NULL,
    f_per    number(11)   NOT NULL,
    f_fee    number(11)   NOT NULL
@@ -46,5 +51,5 @@ CREATE   TABLE   myfund   (
    m_no    number(11)   NOT   NULL,
    iv    number(11)   NULL,
     FOREIGN KEY (f_no) REFERENCES fund(f_no) ON DELETE CASCADE,
-     FOREIGN KEY (M_NO) REFERENCES MEMBER(M_NO) ON DELETE CASCADE
+     FOREIGN KEY (M_NO) REFERENCES member(M_NO) ON DELETE CASCADE
 );
