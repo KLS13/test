@@ -1,0 +1,50 @@
+CREATE   TABLE   member   (
+   m_no    number(11)  PRIMARY KEY,
+   m_id   varchar2(100)   NULL UNIQUE,
+   m_pw   varchar2(100)   NOT NULL,
+   m_addr   varchar2(300)   NOT NULL,
+   m_status   char(1)   DEFAULT 'N' CHECK (M_STATUS IN('Y','N')),
+   m_gender   char(1)  NOT  NULL CHECK (M_GENDER IN('M','F')),
+   m_age   varchar2(100)  NOT NULL,
+   m_name   varchar2(100)  NOT NULL,
+   m_phone   varchar2(100)   NOT NULL,
+   M_ENOROLLDATE DATE DEFAULT SYSDATE
+);
+
+CREATE   TABLE   account   (
+   a_no    number(11)   NOT   NULL,
+   a_account   varchar(150)  NOT NULL,
+   a_pw    number(11)   NOT NULL,
+   m_no    number(11)   NOT   NULL,
+   a_type   char(1)   CHECK(A_TYPE IN('N','S')),
+   a_money    number(20)   DEFAULT 0,
+   FOREIGN KEY (M_NO) REFERENCES MEMBER(M_NO) ON DELETE SET NULL
+);
+
+CREATE   TABLE   account_record   (
+   ar_no    number(11)   NOT   NULL,
+   send_no    number(11)   NOT   NULL,
+   recveier_no    number(11)   NOT   NULL,
+   ar_money    number(20)   NULL,
+   send_account    number(11)   NOT   NULL,
+   recveier_account    number(11)   NOT   NULL,
+    FOREIGN KEY (M_NO) REFERENCES MEMBER(M_NO) ON DELETE CASCADE,
+     FOREIGN KEY (M_NO) REFERENCES MEMBER(M_NO) ON DELETE CASCADE,
+      FOREIGN KEY (M_NO) REFERENCES MEMBER(M_NO) ON DELETE CASCADE,
+       FOREIGN KEY (M_NO) REFERENCES MEMBER(M_NO) ON DELETE CASCADE
+);
+
+CREATE   TABLE   fund   (
+   f_no    number(11)   NOT   NULL,
+   f_name   varchar2(100)  NOT NULL,
+   f_per    number(11)   NOT NULL,
+   f_fee    number(11)   NOT NULL
+);
+
+CREATE   TABLE   myfund   (
+   f_no    number(11)   NOT   NULL,
+   m_no    number(11)   NOT   NULL,
+   iv    number(11)   NULL,
+    FOREIGN KEY (f_no) REFERENCES fund(f_no) ON DELETE CASCADE,
+     FOREIGN KEY (M_NO) REFERENCES MEMBER(M_NO) ON DELETE CASCADE
+);
