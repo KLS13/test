@@ -1,0 +1,5 @@
+function pageChange() {
+			var url = url.value;
+			window.opener.location.href = url; // 부모창을 변경해라.
+			window.close(); // popup1.html은 닫쳐라.
+		};
