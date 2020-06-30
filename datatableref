@@ -1,0 +1,40 @@
+	this.grid = function() {
+
+		$('#grid').dataTable({
+              pageLength: oComGridInfo.defaultPageLength
+            , bPaginate: true
+            , bLengthChange: true
+            , lengthMenu : [ oComGridInfo.dataRow1, oComGridInfo.dataRow2 ]
+			, bAutoWidth: false
+			, processing: true
+			, ordering: true
+			, searching: false
+			, ajax : {
+            	  type : "POST"
+            	, url: "/biz/system/usrMn/usrMn/mainList.json"
+            	, data : function(d){
+                	var formData = {};
+            		$.each($('#mainActionForm').serializeArray(), function() {
+            			formData[this.name] = this.value;
+            		});
+                	return formData;
+                }
+				, dataSrc:"data"
+            }
+			, columns : [
+				  {data: "USR_ID"}
+				, {data: "NAME"}
+				, {data: "DEPT_NM"}
+				, {data: "RM"}
+				, {data: "ZN_ID"}
+            ]
+			, columnDefs: [
+				{ 
+					targets : [4],
+					visible : false					
+	        	}
+			] 
+
+        });
+
+	};
