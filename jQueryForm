@@ -1,0 +1,11 @@
+		var $form = $('<form/>', {
+			'action' : "<c:url value='/smartFclt/cctvPosMn/cctvPosCvcp.do'/>",
+			'method' : 'post'
+		});
+		
+		var isNew = $('<input type="hidden" value="true" name="isNew">');
+		var startDate = $('<input type="hidden" value="${startDate}" name="startDate">');
+		var endDate = $('<input type="hidden" value="${endDate}" name="endDate">');
+		
+		$form.append(isNew).append(startDate).append(endDate);
+		$form.appendTo(document.body).submit();
